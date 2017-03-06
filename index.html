@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro%7CSource+Sans+Pro:400,700" rel="stylesheet" type="text/css">
+    <link href="css/easy-responsive-tabs.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+    <link rel="shortcut icon" href="img/xu.gif">
+</head>
+<body>
+
+<nav class="nav-top">
+    <!-- TODO this link need modify -->
+    <a id="forkme" href="https://github.com/nate-luup/javascript"><img src="img/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <ul>
+        <li><a href="#gis">GIS</a></li>
+        <li><a href="#openlayers">Openlayers</a></li>
+        <li><a href="#googleMap">Google Map</a></li>
+        <li><a href="#examples">Examples</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <header>
+        <h1>WEB MAP</h1>
+        <h2>This document simple describe the mechanism of web map</h2>
+    </header>
+
+    <div id="main">
+        <aside>
+            <nav class="nav-main">
+                <ul>
+                    <li class="nav-header"><a href="#gis">GIS</a></li>
+                    <li><a href="#ogc">OGC(Open GIS Consortium)</a></li>
+                    <li><a href="#resolution_scale">Resolution / Scale</a></li>
+                    <li><a href="#degree_radian">Degree / Radian</a></li>
+                    <li><a href="#coordinates_projection">Coordinates and Projection</a></li>
+                    <li class="nav-header"><a href="#openlayers">Openlayers</a></li>
+                    <li class="nav-header"><a href="#googleMap">Google Map</a></li>
+                    <li class="deprecated"><br><a href="examples.html">Examples</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div id="content" role="main">
+
+            <!--
+             /* ============================================================
+              * GIS
+              * ============================================================ */
+            -->
+            <section id="gis">
+                <h1>GIS</h1>
+
+                <article id="ogc">
+                    <h2>OGC（Open GIS Consortium）</h2>
+                </article>
+                <article id="resolution_scale">
+                    <h2>Resolution and Scale</h2>
+                </article>
+                <article id="degree_radian">
+                    <h2>Degree / Radian</h2>
+                    <p>“弧度”和“度”是度量角大小的两种不同的单位。就像“米”和“市尺”是度量长度大小的两种不同的单位一样。</p>
+                    <h3>一、度的定义 </h3>
+                    <pre>
+                        <code>
+    两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。
+    当这段弧长正好等于圆周长的360分之一时，两条射线的夹角的大小为1度。
+                        </code>
+                    </pre>
+                    <h3>二、弧度的定义</h3>
+                    <pre>
+                        <code>
+    两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。
+    当这段弧长正好等于圆的半径时，两条射线的夹角大小为1弧度。
+                        </code>
+                    </pre>
+                    <img src="img/degree_radian.png" />
+                    <h3>三、度跟弧度之间的换算 </h3>
+                    <pre>
+                        <code>
+    1弧度＝180°/π （≈57.3°）
+    1度＝π/180 弧度
+                        </code>
+                    </pre>
+                </article>
+                <article id="coordinates_projection">
+                    <h2>Coordinates and Projection</h2>
+                </article>
+
+            </section>
+
+            <!--
+             /* ============================================================
+              * Openlayers
+              * ============================================================ */
+            -->
+            <section id="openlayers">
+                <h1>Openlayers</h1>
+
+            </section>
+
+            <!--
+             /* ============================================================
+              * Google Map
+              * ============================================================ */
+            -->
+            <section id="googleMap">
+                <h1>Google Map</h1>
+
+            </section>
+
+
+            <footer class="contentinfo">
+                development is supported by <a href="http://www.xujiasheng.com">Nate Xu</a> &bull;
+                hosted on <a href="https://github.com/nate-luup/javascript">GitHub</a>
+            </footer>
+
+        </div><!-- /#content -->
+    </div><!-- /#main -->
+
+</div><!-- /.container -->
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var headerSize = 70;
+        // Anchor scroll
+        $("a").each(function() {
+            if($(this).attr("href").substr(0, 1) === "#") {
+                $(this).on("click", function(e) {
+                    e.preventDefault();
+                    var id = $(this).attr("href");
+                    if($(id).length == 0){
+                        return;
+                    }
+                    $("html,body").animate({ scrollTop: parseInt($(id).offset().top) - headerSize }, 200);
+                    window.location.hash = $(this).attr("href");
+                });
+            }
+        });
+        if(window.location.hash) {
+            var id = window.location.hash;
+            setTimeout(function() {
+                if($(id).length == 0){
+                    return;
+                }
+                $("html,body").animate({ scrollTop: parseInt($(id).offset().top) - headerSize }, 0);
+            }, 1);
+        }
+    });
+</script>
+</body>
+</html>
