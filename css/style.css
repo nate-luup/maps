@@ -130,7 +130,7 @@ code {
 	border-radius: 3px 3px 3px 3px;
 	color: #DD1144;
 	font-family: "Source Code Pro";
-	font-size: 14px;
+	font-size: 16px;
 	white-space: pre;
 }
 
@@ -170,11 +170,21 @@ pre.example > code > code {
 strong {
 	font-weight: bold;
 }
+.yellow {
+	color: yellow;
+}
+.highlight {
+	color: #FF6666;
+}
+.pageImage {
+	text-align: center;
+	vertical-align: middle;
+}
 /* ============================================================
  * Container
  * ============================================================ */
 .container {
-	width: 940px;
+	width: 70%;
 	margin: 0 auto;
 	background: #f5f5f5;
 	background: #fcfcfc;
@@ -285,7 +295,7 @@ nav.nav-top {
 	position: fixed;
 	width: 100%;
 	z-Index: 1;
-	background: #0088cc;
+	background: #182448;
 	min-height: 52px;
 }
 
@@ -339,7 +349,7 @@ header:after {
 
 header h1 {
 	margin: 28px 0 0 2px;
-	color: #0088cc;
+	color: #182448;
 	font-size: 96px;
 	font-weight: bold;
 	line-height: 1em;
@@ -370,7 +380,7 @@ header p {
  * ============================================================ */
 aside {
 	float: left;
-	width: 220px;
+	width: 20%;
 	margin-right: 20px;
 	display: block;
 	min-height: 1px;
@@ -434,7 +444,7 @@ nav.nav-main ul > li > a:hover {
 #content {
 	float: left;
 	display: block;
-	width: 624px;
+	width: 74%;
 }
 
 #content h1 {
@@ -459,7 +469,7 @@ nav.nav-main ul > li > a:hover {
 
 #content h3 {
 	margin: 18px 0 10px 0;
-	color: #808080;
+	color: #000088;
 	font-size: 20px;
 	font-weight: normal;
 	line-height: 1em;
@@ -495,7 +505,7 @@ footer {
 	height: 20px;
 	margin-top: 60px;
 	padding: 10px 38px;
-	background-color: #7a7a7a !important;
+	background-color: #182448 !important;
 	color: #ffffff;
 	text-align: center;
 }

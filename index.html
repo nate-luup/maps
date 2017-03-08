@@ -8,6 +8,7 @@
     <link href="css/easy-responsive-tabs.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
     <link rel="shortcut icon" href="img/xu.gif">
+    <script src="js/jquery-1.7.2.js"></script>
 </head>
 <body>
 
@@ -58,7 +59,62 @@
                     <h2>OGC（Open GIS Consortium）</h2>
                 </article>
                 <article id="resolution_scale">
-                    <h2>Resolution and Scale</h2>
+                    <h2><a href="http://support.supermap.com.cn/DataWarehouse/WebDocHelp/OnlineHelp/Flash3D/G_ProjectDocumentation/C_ResolutionAndScale.html" target="_blank">Resolution and Scale</a></h2>
+                    <p>地理现象和地理要素的表达通常是多尺度的，尺度表示了地物的综合程度和位置精度，衡量尺度的概念一般用分辨率或比例尺。</p>
+                    <h3>一、分辨率 </h3>
+                    <pre>
+                        <code>
+    在GIS中所提到的分辨率，也称地面分辨率（Ground Resolution）或空间分辨率（Spatial Resolution），
+    <span class="highlight">表示一个像素（pixel）代表的地面实际距离。</span>
+    以谷歌地图为例：在缩放级别为 1 时，图片大小为4个 256*256 的图片，
+    那么赤道上的空间分辨率为：地球赤道周长（实地距离）除以256*2（像素大小）。
+    其他纬度上的分辨率则为：纬度圈长度/512。
+    <span class="highlight">因此可以看出，分辨率取决于两个参数：纬度和缩放级别。
+    缩放级别决定了像素的多少，纬度决定了地面距离的长短。</span>
+    因此谷歌地图某视图下的分辨率计算公式为（单位：米/像素）：
+    <span class="highlight">
+    F(X,Y)：地图分辨率；
+    X：纬度值；
+    Y：缩放级别；
+    R：常量 6378137，表示地球半径，单位：米。
+    </span>
+                        </code>
+                    </pre>
+                    <div class="pageImage"><img src="img/ResolutionFormula.png"></div>
+
+                    <h3>二、比例尺</h3>
+                    <pre>
+                        <code>
+    <span class="highlight">比例尺通常以比率(如 1:10000 )来表示，表示图上距离与实地距离之比。</span>
+    例如 1:10000 表示图上 1cm 代表实际距离 10000cm，即100米。
+    由于比例尺起源较早，通常用（纸质）图上的距离衡量实际距离；
+    <span class="highlight">而分辨率则通常用设备屏幕上的距离来衡量实际距离。</span>
+    而同一个地图视图，尺度是唯一的，比例尺和分辨率只不过是两种表示方法，
+    因此它们是一一对应的。 比例尺与分辨率之间的换算公式如下：
+   <span class="highlight">
+    Scale：地图比例尺；
+    Resolution：地图分辨率；
+    PPI：每英寸的像素点数。
+    </span>
+                        </code>
+                    </pre>
+                    <div class="pageImage"><img src="img/ScaleFormula.png" /></div>
+                    <pre>
+                        <code>
+    其中 PPI，即 Pixel per Inch，即每英寸的像素点数（在不混淆情况下，也有用 DPI 来表示该参数）；
+    <span class="highlight">0.0254 为英寸和米的转换常数。1英寸(in)=0.0254米(m)</span>
+    由于比例尺和分辨率一一对应，因此比例尺也取决于纬度和缩放级别两个参数，并且还与 PPI 相关。
+
+    仍旧以谷歌地图为例：
+    <span class="highlight">
+    当地图处于全幅状态时，上下移动地图，使得地图中心线处纬度发生变化，因此比例尺随之变化；
+    同理，当地图处于不同的缩放级别时，地图比例尺同样也会发生变化。
+    </span>
+                        </code>
+                    </pre>
+
+
+
                 </article>
                 <article id="degree_radian">
                     <h2>Degree / Radian</h2>
@@ -77,7 +133,7 @@
     当这段弧长正好等于圆的半径时，两条射线的夹角大小为1弧度。
                         </code>
                     </pre>
-                    <img src="img/degree_radian.png" />
+                    <div class="pageImage"><img src="img/degree_radian.png" /></div>
                     <h3>三、度跟弧度之间的换算 </h3>
                     <pre>
                         <code>
@@ -122,35 +178,6 @@
     </div><!-- /#main -->
 
 </div><!-- /.container -->
-
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        var headerSize = 70;
-        // Anchor scroll
-        $("a").each(function() {
-            if($(this).attr("href").substr(0, 1) === "#") {
-                $(this).on("click", function(e) {
-                    e.preventDefault();
-                    var id = $(this).attr("href");
-                    if($(id).length == 0){
-                        return;
-                    }
-                    $("html,body").animate({ scrollTop: parseInt($(id).offset().top) - headerSize }, 200);
-                    window.location.hash = $(this).attr("href");
-                });
-            }
-        });
-        if(window.location.hash) {
-            var id = window.location.hash;
-            setTimeout(function() {
-                if($(id).length == 0){
-                    return;
-                }
-                $("html,body").animate({ scrollTop: parseInt($(id).offset().top) - headerSize }, 0);
-            }, 1);
-        }
-    });
-</script>
+<script src="js/init.js"></script>
 </body>
 </html>
