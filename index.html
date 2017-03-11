@@ -34,6 +34,7 @@
             <nav class="nav-main">
                 <ul>
                     <li class="nav-header"><a href="#gis">GIS</a></li>
+                    <li><a href="#basic">名词解释</a></li>
                     <li><a href="#ogc">OGC(Open GIS Consortium)</a></li>
                     <li><a href="#resolution_scale">分辨率 / 比例尺</a></li>
                     <li><a href="#resolution" class="h3">分辨率</a></li>
@@ -61,7 +62,37 @@
             -->
             <section id="gis">
                 <h1>GIS</h1>
-
+                <article id="basic">
+                    <h2>名词解释</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="code"><a href="http://baike.baidu.com/item/%E6%9C%AC%E5%88%9D%E5%AD%90%E5%8D%88%E7%BA%BF">本初子午线</a></td>
+                                <td>
+                                    本初子午线，即0度经线，亦称格林威治子午线或格林尼治子午线
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="code"><a href="https://zh.wikipedia.org/wiki/%E7%BB%8F%E7%BA%AC%E5%BA%A6">经度</a></td>
+                                <td>
+                                    经度是地球上一个地点离一根被称为本初子午线的南北方向走线以东或以西的度数。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="code"><a href="https://zh.wikipedia.org/wiki/%E7%BB%8F%E7%BA%AC%E5%BA%A6">纬度</a></td>
+                                <td>
+                                    纬度是指某点与地球球心的连线和地球赤道面所成的线面角，其数值在0至90度之间。位于赤道以北的点的纬度叫北纬，记为N，位于赤道以南的点的纬度称南纬，记为S。
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
                 <article id="ogc">
                     <h2>OGC（Open GIS Consortium）</h2>
                 </article>
@@ -277,17 +308,38 @@
                         </code>
                     </pre>
                     <!--TODO need detail describe quad tree-->
-                    <h2 id="projection">投影</h2>
+                    <h2 id="projection"><a href="]http://blog.csdn.net/mygisforum/article/details/13295223">墨卡托投影</a></h2>
+                    <h3>一、墨卡托投影</h3>
                     <pre>
                         <code>
-    为了使地图看起来是无缝（Seamless）的，并且确保来自不同数据源的卫星照片能够完美的拼接，
-    必须有一个统一的地图映射系统，这就是Google地图所采用的墨卡托映射（Mercator Projection)
-    通过Mercator Projection，整个地球可以展示为如下平面地图：
+    墨卡托投影，又称正轴等角圆柱投影，由荷兰地图学家墨卡托(G.Mercator)于1569年创拟。
+    假设地球被套在一个圆柱中，赤道与圆柱相切，然后在地球中心放一盏灯，
+    把球面上的图形投影到圆柱体上，再把圆柱体展开，就形成以一幅墨卡托投影的世界地图（如下图）。
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/Mercator_Projection.jpg"/></div>
+                    <div class="pageImage"><img src="img/Mercator_projection2"/></div>
                     <pre>
                         <code>
+    从上图中可以看出，X轴的刻度是等距的，Y轴方向越靠近两极变形越大。
+                        </code>
+                    </pre>
+                    <div class="pageImage"><img src="img/Mercator_Projection.png"/></div>
+                    <!--https://upload.wikimedia.org/wikipedia/commons/6/62/Usgs_map_mercator.svg-->
+                    <h3>二、Web墨卡托投影</h3>
+                    <pre>
+                        <code>
+    Web墨卡托投影坐标系，广泛应用与Google Map、Bing Map等地图投影中。它以整个世界范围，
+    赤道作为标准纬线，本初子午线作为中央经线，两者交点为坐标原点，向东向北为正，向西向南为负。
+
+    X轴：赤道半径取值为6378137米，则赤道周长为2*PI*r ，以坐标原点为中心，东西南北各方向为其值一半，
+    即 PI*r= 20037508.3427892，<span class="highlight">因此X轴的取值范围：[-20037508.3427892,20037508.3427892]。</span>
+
+    Y轴：由墨卡托投影的公式可知，当纬度φ接近两极，即90°时，y值趋向于无穷。
+    为了使用方便，就把Y轴的取值范围也限定在[-20037508.3427892,20037508.3427892]之间，形成一个正方形。
+    因此在投影坐标系（米）下的范围是：
+    最小(-20037508.3427892, -20037508.3427892 )到最大 (20037508.3427892, 20037508.3427892)。
+    经过反算，可得到纬度85.05112877980659。<span class="highlight">因此纬度取值范围是[-85.05112877980659，85.05112877980659]。</span>
+
     尽管Mercator Projection会使地球比例尺和某些区域变形，尤其在两极，它还是有不可磨灭的贡献的：
     1、首先它是共形映射（Conformal Projection），即保留了物体的原有形状。
     这在展示卫星照片的时候很重要，因为我们所看到的正方形建筑就应该是正方形的，而不是长方形的。
