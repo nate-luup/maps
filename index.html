@@ -94,7 +94,112 @@
                     </table>
                 </article>
                 <article id="ogc">
-                    <h2>OGC（Open GIS Consortium）</h2>
+                    <h2><a href="http://baike.baidu.com/link?url=ScW-PxDxIc9_EZOYUtkcxmSQ6nxlFlVCqz3mf9NtO81m2o2uZq-odxP8FHwCILD6hNkbyITK_jS9aRnW3hhjhq">OGC（Open GIS Consortium）开放地理空间协会</a></h2>
+                    <pre>
+                        <code>
+    开放地理空间协会（Open Geospatial Consortium-OGC），又译为开放地理空间联盟，
+    在OGC，490个多个来自世界各地的商业组织、政府机构、非盈利组织和研究性机构在寻求共识的过程中合作，
+    <span class="highlight">致力于提供地理信息行业软件和数据及服务的标准化工作。</span>
+
+    OGC是一个非盈利的志愿的国际标准化组织，引领着空间地理信息标准及定位基本服务的发展。
+    在空间数据互操作领域，基于公共接口访问模式的互操作方法是一种基本的操作方法。
+    <span class="highlight">通过国际标准化组织（ISO/TC211）或技术联盟（如OGC）制定空间数据互操作的接口规范，</span>
+    GIS软件商开发遵循这一接口规范的空间数据的读写函数，可以实现异构空间数据库的互操作。
+                        </code>
+                    </pre>
+                    <h3>标准</h3>
+                    <pre>
+                        <code>
+    基于http（Web）XML的空间数据互操作是一个很热门的研究方向，主要涉及Web Service的相关技术。
+    OGC和ISO/TC211共同推出了基于Web服务（XML）的空间数据互操作实现规范
+    <span class="yellow">Web Map Service，Web Feature Service，Web Coverage Service以及用于空间数据传输与转换的地理信息标记语言GML。</span>
+
+    下面列出一些常用的标准：
+                        </code>
+                    </pre>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GML</td>
+                                <td>
+                                    地理标记语言：为地理数据提供XML编码
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>KML</td>
+                                <td>
+                                    Keyhole标记语言：是一种基于XML语法标准的标记语言。用于在现在的（或未来的）以网络为基础的二维地图或三维地球浏览器上显示地理数据观察与测量
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>WMS</td>
+                                <td>
+                                    网络地图服务（WMS）:提供地图图像
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>WFS</td>
+                                <td>
+                                    网络要素服务：为检索或改变要素功能说
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>WCS</td>
+                                <td>
+                                    网络地理覆盖服务：提供对地理覆盖数据的接入、构造子集以及处理
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>地图服务</h3>
+                    <pre>
+                        <code>
+    Web地图服务（WMS）利用具有地理空间位置信息的数据制作地图。其中将地图定义为地理数据可视的表现。
+    这个规范定义了三个操作：
+    <span class="highlight">
+    GetCapabilities： 返回服务级元数据，它是对服务信息内容和要求参数的一种描述；
+    GetMap： 返回一个地图影像，其地理空间参考和大小参数是明确定义了的；
+    GetFeatureInfo（可选）： 返回显示在地图上的某些特殊要素的信息
+    </span>
+                        </code>
+                    </pre>
+                    <h3>矢量服务</h3>
+                    <pre>
+                        <code>
+    Web地图服务返回的是图层级的地图影像，Web矢量服务（WFS）返回的是矢量级的GML编码，
+    并提供对矢量的增加、修改、删除等事务操作，是对Web地图服务的进一步深入。
+    OGC Web矢量服务允许客户端从多个Web矢量服务中取得使用地理标记语言（GML）编码的地理空间数据，
+    这个服务定义了五个操作：
+    <span class="highlight">
+    GetCapabilites： 返回Web矢量服务性能描述文档（用XML描述）；
+    DescribeFeatureType： 返回描述可以提供服务的任何矢量结构的XML文档；
+    GetFeature： 为一个获取矢量实例的请求提供服务；
+    Transaction： 为事务请求提供服务；
+    LockFeature： 处理在一个事务期间对一个或多个矢量类型实例上锁的请求。
+    </span>
+                        </code>
+                    </pre>
+                    <h3>栅格服务</h3>
+                    <pre>
+                        <code>
+    Web栅格服务（WCS）面向空间影像数据，它将包含地理位置值的地理空间数据作为栅格（Coverage）在网上相互交换。
+    网络栅格服务由三种操作组成：
+    <span class="highlight">
+    GetCapabilities： 操作返回描述服务和数据集的XML文档。
+    GetCoverage： 操作是在GetCapabilities确定什么样的查询可以执行、
+    什么样的数据能够获取之后执行的，它使用通用的栅格格式返回地理位置的值或属性。
+
+    DescribeCoverageType： 操作允许客户端请求由具体的WCS服务器提供的任一覆盖层的完全描述。
+    </span>
+                        </code>
+                    </pre>
+                    <p>详细信息可以查看<a href="resources/OGC标准介绍.pdf">OGC标准介绍</a></p>
                 </article>
                 <article id="resolution_scale">
                     <h2><a href="http://support.supermap.com.cn/DataWarehouse/WebDocHelp/OnlineHelp/Flash3D/G_ProjectDocumentation/C_ResolutionAndScale.html" target="_blank">Resolution and Scale</a></h2>
