@@ -4,7 +4,6 @@
     <title>Web map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="css/easy-responsive-tabs.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
     <link rel="shortcut icon" href="img/xu.gif">
     <script src="js/jquery-1.7.2.js"></script>
@@ -33,22 +32,27 @@
         <aside>
             <nav class="nav-main">
                 <ul>
+                    <!-- GIS -->
                     <li class="nav-header"><a href="#gis">GIS</a></li>
                     <li><a href="#basic">名词解释</a></li>
-                    <li><a href="#ogc">OGC(Open GIS Consortium)</a></li>
+                    <li><a href="#ogc">开放地理空间协会</a></li>
                     <li><a href="#resolution_scale">分辨率 / 比例尺</a></li>
                     <li><a href="#resolution" class="h3">分辨率</a></li>
                     <li><a href="#scale" class="h3">比例尺</a></li>
                     <li><a href="#degree_radian">角度 / 弧度</a></li>
                     <li><a href="#degree" class="h3">角度</a></li>
                     <li><a href="#radian" class="h3">弧度</a></li>
-                    <li class="nav-header"><a href="#googleMap">Google 地图</a></li>
+                    <!--Openlayers-->
+                    <li class="nav-header"><a href="#openlayers">Openlayers</a></li>
+                    <li><a href="#whatOpenlayers">OpenLayers 是什么？</a></li>
+                    <li><a href="#functionalityOfOpenlayers">功能</a></li>
+                    <!--Google Map-->
+                    <li class="nav-header"><a href="#googleMap">Google Map</a></li>
                     <li><a href="#mapCoordinates">地图坐标</a></li>
                     <li><a href="#worldCoordinates" class="h3">世界坐标</a></li>
                     <li><a href="#pixelCoordinates" class="h3">像素坐标</a></li>
                     <li><a href="#tileCoordinates" class="h3">图块坐标</a></li>
                     <li><a href="#projection">投影</a></li>
-                    <li class="nav-header"><a href="#openlayers">Openlayers</a></li>
                     <li class="deprecated"><br><a href="examples.html">Examples</a></li>
                 </ul>
             </nav>
@@ -199,7 +203,7 @@
     </span>
                         </code>
                     </pre>
-                    <p>详细信息可以查看<a href="resources/OGC标准介绍.pdf">OGC标准介绍</a></p>
+                    <p>详细信息可以查看<a href="resources/OGC_SPEC.pdf">OGC标准介绍</a></p>
                 </article>
                 <article id="resolution_scale">
                     <h2><a href="http://support.supermap.com.cn/DataWarehouse/WebDocHelp/OnlineHelp/Flash3D/G_ProjectDocumentation/C_ResolutionAndScale.html" target="_blank">Resolution and Scale</a></h2>
@@ -223,7 +227,7 @@
     </span>
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/ResolutionFormula.png"></div>
+                    <div class="pageImage"><img src="img/resolutionFormula.png"></div>
 
                     <h3 id="scale">二、比例尺</h3>
                     <pre>
@@ -241,7 +245,7 @@
     </span>
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/ScaleFormula.png" /></div>
+                    <div class="pageImage"><img src="img/scaleFormula.png" /></div>
                     <pre>
                         <code>
     其中 PPI，即 Pixel per Inch，即每英寸的像素点数（在不混淆情况下，也有用 DPI 来表示该参数）；
@@ -295,7 +299,34 @@
             -->
             <section id="openlayers">
                 <h1>Openlayers</h1>
-
+                <article id="whatOpenlayers">
+                    <h2>OpenLayers 是什么？</h2>
+                    <pre>
+                        <code>
+    <span class="highlight">OpenLayers 是一个专为Web GIS 客户端开发提供的JavaScript 类库包，用于实现标准格式发布的地图数据访问。
+    OpenLayers 支持的地图来源包括Google Maps、Yahoo、 Map、微软Virtual Earth 等，</span>
+    用户还可以用简单的图片地图作为背景图，与其他的图层在OpenLayers中进行叠加，
+    在这一方面OpenLayers提供了非常多的选择。除此之外，OpenLayers实现访问地理空间数据的方法都符合行业标准。
+    OpenLayers支持 OGC 制定的WMS（Web Mapping Service）和WFS（Web Feature Service）等网络服务规范，
+    可以通过远程服务的方式，将以OGC 服务形式发布的地图数据加载到基于浏览器的OpenLayers 客户端中进行显示。
+                        </code>
+                    </pre>
+                    <a href="https://upload.wikimedia.org/wikipedia/commons/0/09/GeoServer_GeoNetwork_with_web_app.svg" target="_blank">查看原图</a>
+                    <div class="pageImage">
+                        <img src="img/openlayer_structure.png" />
+                    </div>
+                </article>
+                <article id="functionalityOfOpenlayers">
+                    <h2>功能</h2>
+                    <pre>
+                        <code>
+    在操作方面，OpenLayers 除了可以在浏览器中帮助开发者实现地图浏览的基本效果，
+    比如放大（Zoom In）、缩小（Zoom Out）、平移（Pan）等常用操作之外，
+    还可以进行选取面、选取线、要素选择、图层叠加等不同的操作，
+    甚至可以对已有的OpenLayers 操作和数据支持类型进行扩充，为其赋予更多的功能。
+                        </code>
+                    </pre>
+                </article>
             </section>
 
             <!--
@@ -304,6 +335,7 @@
               * ============================================================ */
             -->
             <section id="googleMap">
+                <h1>Google Map</h1>
                 <article id="coordinates_projection">
                     <h2 id="mapCoordinates"><a href="https://developers.google.com/maps/documentation/javascript/maptypes#MapCoordinates">地图坐标</a></h2>
                     <p>Google Maps API 使用以下几种坐标系：</p>
@@ -422,14 +454,14 @@
     把球面上的图形投影到圆柱体上，再把圆柱体展开，就形成以一幅墨卡托投影的世界地图（如下图）。
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/Mercator_projection2"/></div>
+                    <div class="pageImage"><img src="img/mercator_projection2"/></div>
                     <pre>
                         <code>
     从上图中可以看出，X轴的刻度是等距的，Y轴方向越靠近两极变形越大。
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/Mercator_Projection.png"/></div>
-                    <!--https://upload.wikimedia.org/wikipedia/commons/6/62/Usgs_map_mercator.svg-->
+                    <a href="https://upload.wikimedia.org/wikipedia/commons/6/62/Usgs_map_mercator.svg" target="_blank">查看原图</a>
+                    <div class="pageImage"><img src="img/mercator_projection.png"/></div>
                     <h3>二、Web墨卡托投影</h3>
                     <pre>
                         <code>
