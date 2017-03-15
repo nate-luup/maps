@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/style_openlayers.css" rel="stylesheet" media="screen">
+    <link rel="shortcut icon" href="img/xu.gif">
+    <script src="js/jquery-1.7.2.js"></script>
+</head>
+<body>
+
+<nav class="nav-top">
+    <a id="forkme" href="https://github.com/nate-luup/maps"><img src="img/forkme_right_red.png" alt="Fork me on GitHub"></a>
+    <ul>
+        <li><a href="index.html">GIS</a></li>
+        <li><a href="javascript:void(0);" class="active">Openlayers</a></li>
+        <li><a href="googleMap.html">Google Map</a></li>
+        <li><a href="examples.html">Examples</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <header>
+        <!--<h1>Openlayers</h1>-->
+        <!--<p>Openlayers 从不生产地图，Openlayers只是地图的搬运工。</p>-->
+    </header>
+
+    <div id="main">
+        <aside>
+            <nav class="nav-main">
+                <ul>
+                    <!--Openlayers-->
+                    <li class="nav-header"><a href="#openlayers">Openlayers</a></li>
+                    <li><a href="#whatOpenlayers">OpenLayers 是什么？</a></li>
+                    <li><a href="#functionalityOfOpenlayers">功能</a></li>
+                    <li><a href="#reference">External links</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div id="content" role="main">
+
+            <section id="openlayers">
+                <h1><a href="https://en.wikipedia.org/wiki/OpenLayers" target="_blank">Openlayers</a></h1>
+
+                <article id="whatOpenlayers">
+                    <h2>OpenLayers 是什么？</h2>
+                    <pre>
+                        <code>
+    <span class="highlight">OpenLayers 是一个专为Web GIS 客户端开发提供的JavaScript 类库包，用于实现标准格式发布的地图数据访问。
+    OpenLayers 支持的地图来源包括Google Maps、Yahoo、 Map、微软Virtual Earth 等，</span>
+    用户还可以用简单的图片地图作为背景图，与其他的图层在OpenLayers中进行叠加，
+    在这一方面OpenLayers提供了非常多的选择。除此之外，OpenLayers实现访问地理空间数据的方法都符合行业标准。
+    OpenLayers支持 OGC 制定的WMS（Web Mapping Service）和WFS（Web Feature Service）等网络服务规范，
+    可以通过远程服务的方式，将以OGC 服务形式发布的地图数据加载到基于浏览器的OpenLayers 客户端中进行显示。
+                        </code>
+                    </pre>
+                    <a href="https://upload.wikimedia.org/wikipedia/commons/0/09/GeoServer_GeoNetwork_with_web_app.svg" target="_blank">查看原图</a>
+                    <div class="pageImage">
+                        <img src="img/openlayer_structure.png" />
+                    </div>
+                    <p>
+                        <pre>
+    OpenLayers can communicate through several protocols
+    GeoServer and GeoNetwork with interfaces and applications sketch.
+    Green represents read and write paths. Dotted arrowed line indicates mostly read-only data flow.
+                        </pre>
+                    </p>
+                </article>
+                <article id="functionalityOfOpenlayers">
+                    <h2>功能</h2>
+                    <pre>
+                        <code>
+    在操作方面，OpenLayers 除了可以在浏览器中帮助开发者实现地图浏览的基本效果，
+    比如放大（Zoom In）、缩小（Zoom Out）、平移（Pan）等常用操作之外，
+    还可以进行选取面、选取线、要素选择、图层叠加等不同的操作，
+    甚至可以对已有的OpenLayers 操作和数据支持类型进行扩充，为其赋予更多的功能。
+                        </code>
+                    </pre>
+                </article>
+            </section>
+            <section id="reference">
+                <h2>External links</h2>
+                <ul class="reference">
+                    <li><a href="http://www.openlayers.org/">OpenLayers Official Site</a></li>
+                    <li><a href="https://github.com/openlayers/ol3">OpenLayers on GitHub</a></li>
+                    <li><a href="http://openlayers.org/two/">OpenLayers 2</a></li>
+                    <li><a href="http://dev.openlayers.org/">OpenLayers 2 Dev Website</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/OpenLayers">OpenLayers Wiki page</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Prototype_JavaScript_Framework">Prototype JavaScript Framework</a></li>
+
+                </ul>
+            </section>
+
+            <footer class="contentinfo">
+                development is supported by <a href="http://www.xujiasheng.com">Nate Xu</a> &bull;
+                hosted on <a href="https://github.com/nate-luup/javascript">GitHub</a>
+            </footer>
+
+        </div><!-- /#content -->
+    </div><!-- /#main -->
+
+</div><!-- /.container -->
+<a href="#main"><span id="back-to-top"></span></a>
+<script src="js/init.js"></script>
+</body>
+</html>

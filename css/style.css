@@ -332,6 +332,10 @@ nav.nav-top ul > li > a:hover {
 	background: #0074ae;
 	text-decoration: none;
 }
+nav.nav-top .active{
+	color: yellowgreen;
+	text-decoration: none;
+}
 
 /* ============================================================
  * Header
@@ -583,4 +587,19 @@ h2.resp-accordion {
 .carbon-poweredby { 
     font-size: 0.8em;
     color: #808080;
+}
+#back-to-top {
+	background:url("../img/back-to-top-gray.png");
+	width: 50px;
+	height: 50px;
+	bottom: 0;
+	position: fixed;
+	right: 2px;
+	cursor: pointer;
+}
+.hide,#forkme{
+	display: none;
+}
+.reference a{
+	line-height: 24px;
 }
