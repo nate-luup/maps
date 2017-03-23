@@ -67,9 +67,7 @@
     Green represents read and write paths. Dotted arrowed line indicates mostly read-only data flow.
                         </pre>
                     </p>
-                </article>
-                <article id="functionalityOfOpenlayers">
-                    <h2>功能</h2>
+
                     <pre>
                         <code>
     在操作方面，OpenLayers 除了可以在浏览器中帮助开发者实现地图浏览的基本效果，
@@ -79,17 +77,100 @@
                         </code>
                     </pre>
                 </article>
+                <article id="functionalityOfOpenlayers">
+                    <h2>功能</h2>
+                    <section>
+                        <h3>Web Mapping Basics</h3>
+                        <p>
+                            OpenLayers is a big and complex framework but, at the same time it is also very powerful and flexible.
+                            OpenLayers tries to implement all the required things a developer could need to create a web GIS application.
+                            That is, not only GIS related concepts such as map, layer, or standard formats but also manipulation of document elements or helper functions to make asynchronous requests.
+                        </p>
+                        <p>
+                            The main concept in OpenLayers is the map. It represents the view where information is rendered. The map can contain any number of layers, which can be the raster or vector layer.
+                            On its way, each layer has a data source that serves data with its own format: a PNG image, a KML file, and so on. In addition, the map can contain controls, which help to interact with the
+                            map and its contents: pan, zoom, feature selection, and so on.
+                        </p>
+                        <ul>
+                            <li><a href="http://dev.openlayers.org/examples/example.html" target="_blank">Simple map Example</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Adding Raster Layers</h3>
+                        <p>
+                            Imagery is one of the most important kinds of data to work with in a GIS system.
+                        </p>
+                        <p>
+                            OpenLayers offers several classes to integrate with different imagery providers, from proprietary providers such as Google Maps and Bing Maps, to Open Source ones such as OpenStreetMap or even any WMS service provider.
+                        </p>
+                        <ul>
+                            <li><a href="http://dev.openlayers.org/examples/google.html" target="_blank">Google (v3) Layer Example</a></li>
+                            <li><a href="http://dev.openlayers.org/examples/bing-tiles.html" target="_blank">Basic Bing Tiles Example</a></li>
+                            <li><a href="http://dev.openlayers.org/examples/xyz-esri.html" target="_blank">Basic ESRI Map Cache Example</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Adding Controls</h3>
+                        <ul>
+                            <li><a href="http://dev.openlayers.org/examples/controls.html" target="_blank">Map Controls Example</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Beyond the Basics</h3>
+                        <p>
+                            The implementation of OpenLayers tries to have as less dependencies on external libraries as possible. This means, OpenLayers requires implementing many features that we can find in other projects: DOM elements' manipulation, AJAX requests, and so on.
+                        </p>
+                        <ul>
+                            <li>
+                                Working with projections
+                            </li>
+                            <p>
+                                Usually, we specify the desired projection for the map. Later when adding a vector layer to the map, we need to specify to the layer projection so that OpenLayers transforms features from the layer's projection to the map's projection.
+                                But, by default, OpenLayers has a great limitation on projections: we can only use EPSG:4326 and EPSG:900913. Why? Because transforming between projections is not a simple task and there are other great projects that can make it.
+                                So, when we want to work with projections other than EPSG:4326 and EPSG:900913, OpenLayers uses Proj4js Library ( http://trac.osgeo.org/proj4js ).
+                                The EPSG codes are simply a standardized way to classify and identify the great amount of available projections.
+                            </p>
+                            <p>
+                                <span class="highlight">EPSG:4326 corresponds to the WGS84 (World Geodetic System) and EPSG:900913 is the Spherical Mercator projection popularized by their use in Google Maps.</span>
+                                <a href="http://dev.openlayers.org/examples/polar-projections.html" target="_blank" style="display: block">Switch between polar projections</a>
+                            </p>
+
+                            <li>Creating a custom control</li>
+                            <a href="http://dev.openlayers.org/examples/custom-control.html" target="_blank">Custom Control Example</a>
+                            <li>
+                                Creating a custom renderer
+                            </li>
+                            <p>
+                                Every OpenLayers.Layer.Vector instance contains a renderer that is responsible to render the layer's features (such as points, paths, and polygons) on the map using the best technologies available in the browser.
+                                These can be the HTML5 Canvas element available in many modern browsers (such as Firefox or Chrome), SVG, or VML.
+                                When OpenLayers.Layer.Vector is initialized, OpenLayers looks for the best available rendering engine and creates an instance of OpenLayers.Renderer that will render the features on the map.
+                                TODO Add example of custom render. We can take a look at <a href="http://dev.openlayers.org/examples/stylemap.html" target="_blank">StyleMap Example</a>
+                            </p>
+                            <li>
+                                SelectFeature Control on Layer.Vector
+                                <a href="http://dev.openlayers.org/examples/select-feature.html" target="_blank">select-feature</a>
+                            </li>
+                            <li>
+                                Image layers
+                                <a href="http://dev.openlayers.org/examples/image-layer.html" target="_blank">Image Layer Example</a>
+                            </li>
+
+                        </ul>
+                    </section>
+                </article>
             </section>
             <section id="reference">
                 <h2>External links</h2>
                 <ul class="reference">
-                    <li><a href="http://www.openlayers.org/">OpenLayers Official Site</a></li>
-                    <li><a href="https://github.com/openlayers/ol3">OpenLayers on GitHub</a></li>
-                    <li><a href="http://openlayers.org/two/">OpenLayers 2</a></li>
-                    <li><a href="http://dev.openlayers.org/">OpenLayers 2 Dev Website</a></li>
-                    <li><a href="https://en.wikipedia.org/wiki/OpenLayers">OpenLayers Wiki page</a></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Prototype_JavaScript_Framework">Prototype JavaScript Framework</a></li>
-
+                    <li><a href="http://www.openlayers.org/" target="_blank">OpenLayers Official Site</a></li>
+                    <li><a href="https://github.com/openlayers/ol3" target="_blank">OpenLayers on GitHub</a></li>
+                    <li><a href="http://openlayers.org/two/" target="_blank">OpenLayers 2</a></li>
+                    <li><a href="http://dev.openlayers.org/" target="_blank">OpenLayers 2 Dev Website</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/OpenLayers" target="_blank">OpenLayers Wiki page</a></li>
+                    <li><a href="http://wiki.openstreetmap.org/wiki/OpenLayers_Class_Diagrams" target="_blank">OpenLayers Class Diagrams</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Prototype_JavaScript_Framework" target="_blank">Prototype JavaScript Framework</a></li>
                 </ul>
             </section>
 
