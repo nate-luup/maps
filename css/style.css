@@ -184,6 +184,21 @@ strong {
 	vertical-align: super;
 	font-size: smaller;
 }
+.importantP{
+	margin: 12px 0;
+	padding: 12px 20px;
+	background: #292b36;
+	border: none;
+	border-radius: 8px;
+	color: #ffffff;
+	overflow: auto;
+}
+.pT20{
+	padding-top: 20px;
+}
+.displayB{
+	display: block;
+}
 /* ============================================================
  * Container
  * ============================================================ */

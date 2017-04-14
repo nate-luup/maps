@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Web map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,50 +9,122 @@
     <link rel="shortcut icon" href="img/xu.gif">
     <script src="js/jquery-1.7.2.js"></script>
 </head>
+
 <body>
+    <nav class="nav-top">
+        <a id="forkme" href="https://github.com/nate-luup/maps"><img src="img/forkme_right_red.png" alt="Fork me on GitHub"></a>
+        <ul>
+            <li><a href="javascript:void(0);" class="active">GIS</a></li>
+            <li><a href="openlayers.html">Openlayers</a></li>
+            <li><a href="googleMap.html">Google Map</a></li>
+            <li><a href="examples.html">Examples</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>WEB MAP</h1>
+            <h2>This document simple describe the mechanism of web map</h2>
+        </header>
+        <div id="main">
+            <aside>
+                <nav class="nav-main">
+                    <ul>
+                        <!-- GIS -->
+                        <li class="nav-header"><a href="#gis">GIS</a></li>
+                        <li><a href="#structure">GIS系统组成</a></li>
+                        <li><a href="#howtowork">GIS系统如何工作</a></li>
+                        <!-- GIS basic -->
+                        <li class="nav-header"><a href="#basic">Basic</a></li>
+                        <li><a href="#resolution_scale">分辨率 / 比例尺</a></li>
+                        <li><a href="#resolution" class="h3">分辨率</a></li>
+                        <li><a href="#scale" class="h3">比例尺</a></li>
+                        <li><a href="#degree_radian">角度 / 弧度</a></li>
+                        <li><a href="#degree" class="h3">角度</a></li>
+                        <li><a href="#radian" class="h3">弧度</a></li>
+                        <li class="nav-header"><a href="#reference">External links</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <div id="content" role="main">
+                <section id="gis">
+                    <h1>GIS</h1>
+                    <article id="structure">
+                        <h2>GIS系统组成</h2>
+                        <p>
+                            和传统的三层架构一样，一个典型的GIS系统也是由三部分组成：客户端，服务器，存储。在实际的场景中，可能又会引入缓存服务器，负载均衡服务器等。
+                        </p>
+                        <div class="pageImage"><img src="img/gis-stack-resized.png" /></div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>客户端</td>
+                                    <td>
+                                        OpenLayers / Leaflet
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>服务器</td>
+                                    <td>
+                                        Mapnik::OGCServer
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>渲染引擎</td>
+                                    <td>
+                                         Mapnik
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>存储</td>
+                                    <td>
+                                        Postgres + PostGIS / OSM Data / Shapefiles
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </article>
+                    <article id="howtowork">
+                        <h2>GIS系统如何工作</h2>
+                        <section>
+                            <h3>渲染地图</h3>
+                            <p class="importantP">
+                                <span class="highlight">
+                                这些信息存储在数据文件中（shapefiles）或者数据库中，通过使用专门的工具来将这些地理信息转换成图片。</span>由于每张图片都是透明的，这样叠加起来的最后效果就是如Google Maps之类应用的结果了。当然，叠加过程一般都发生在服务器端（有些简单应用则是在客户端完成某些层次的绘制，比如我之前发过的我去过的地方，这些热力图就是在客户端通过JavaScript加上去的。）。
+                                <span class="pT20 displayB">
+                                地图在服务器端被渲染出来之后，尺寸一般会非常大。需要有工具将这些大图切分成很多组的小图，这些小图被称之为瓦片（tile）。为了给不同缩放级别的客户端提供不同的图片，这些瓦片被精心的分成了多个组，每个组都有编号。如果地图支持18级的缩放，就会现有18个分组。当然分组好越靠后，分组中的瓦片越多。
+                                </span>
+                            </p>
+                            <p>
+                                通常来讲，我们看到的地图是由一个底图和若干个层的叠加来达到的最终结果。其中每个层次都会保存不同类型的地理信息，比如将所有的河流信息放在一个层，将建筑物放在另外一个层。
+                            </p>
+                            <div class="pageImage"><img src="img/elevation-map.jpg"></div>
+                        </section>
+                        <section>
+                            <h3>获取地图</h3>
+                            <p>
+                                比如当客户端请求缩放级别为10的地图时，客户端（比如OpenLayers）会根据经纬度计算好图片的边界，然后请求第10级的一些瓦片，并将这些瓦片排列在画布上。一般而言，这些瓦片都是正方形（256x256或者512x512）。
 
-<nav class="nav-top">
-    <a id="forkme" href="https://github.com/nate-luup/maps"><img src="img/forkme_right_red.png" alt="Fork me on GitHub"></a>
-    <ul>
-        <li><a href="javascript:void(0);" class="active">GIS</a></li>
-        <li><a href="openlayers.html">Openlayers</a></li>
-        <li><a href="googleMap.html">Google Map</a></li>
-        <li><a href="examples.html">Examples</a></li>
-    </ul>
-</nav>
-
-<div class="container">
-
-    <header>
-        <h1>WEB MAP</h1>
-        <h2>This document simple describe the mechanism of web map</h2>
-    </header>
-
-    <div id="main">
-        <aside>
-            <nav class="nav-main">
-                <ul>
-                    <!-- GIS -->
-                    <li class="nav-header"><a href="#gis">GIS</a></li>
-                    <li><a href="#resolution_scale">分辨率 / 比例尺</a></li>
-                    <li><a href="#resolution" class="h3">分辨率</a></li>
-                    <li><a href="#scale" class="h3">比例尺</a></li>
-                    <li><a href="#degree_radian">角度 / 弧度</a></li>
-                    <li><a href="#degree" class="h3">角度</a></li>
-                    <li><a href="#radian" class="h3">弧度</a></li>
-                    <li class="nav-header"><a href="#reference">External links</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <div id="content" role="main">
-
-            <section id="gis">
-                <h1>GIS</h1>
-                <article id="resolution_scale">
-                    <h2>Resolution and Scale</h2>
-                    <p>地理现象和地理要素的表达通常是多尺度的，尺度表示了地物的综合程度和位置精度，衡量尺度的概念一般用分辨率或比例尺。</p>
-                    <h3 id="resolution">一、分辨率 </h3>
-                    <pre>
+                                <span class="pT20 displayB">
+                                    WMS(Web Map Service)是一个基于HTTP的简单协议，客户端发送的请求中包含请求类型，地图的层次，边界等信息，服务器根据这个信息生成图片，并返回该图片：
+                                </span>
+                            </p>
+                            <div class="pageImage"><img src="img/wms-request.png" alt=""></div>
+                        </section>
+                    </article>
+                </section>
+                <section id="basic">
+                    <h1>Basic</h1>
+                    <article id="resolution_scale">
+                        <h2>Resolution and Scale</h2>
+                        <p>地理现象和地理要素的表达通常是多尺度的，尺度表示了地物的综合程度和位置精度，衡量尺度的概念一般用分辨率或比例尺。</p>
+                        <h3 id="resolution">一、分辨率 </h3>
+                        <pre>
                         <code>
     在GIS中所提到的分辨率，也称地面分辨率（Ground Resolution）或空间分辨率（Spatial Resolution），
     <span class="highlight">表示一个像素（pixel）代表的地面实际距离。</span>
@@ -69,10 +142,9 @@
     </span>
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/resolutionFormula.png"></div>
-
-                    <h3 id="scale">二、比例尺</h3>
-                    <pre>
+                        <div class="pageImage"><img src="img/resolutionFormula.png"></div>
+                        <h3 id="scale">二、比例尺</h3>
+                        <pre>
                         <code>
     <span class="highlight">比例尺通常以比率(如 1:10000 )来表示，表示图上距离与实地距离之比。</span>
     例如 1:10000 表示图上 1cm 代表实际距离 10000cm，即100米。
@@ -87,8 +159,8 @@
     </span>
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/scaleFormula.png" /></div>
-                    <pre>
+                        <div class="pageImage"><img src="img/scaleFormula.png" /></div>
+                        <pre>
                         <code>
     其中 PPI，即 Pixel per Inch，即每英寸的像素点数（在不混淆情况下，也有用 DPI 来表示该参数）；
     <span class="highlight">0.0254 为英寸和米的转换常数。1英寸(in)=0.0254米(m)</span>
@@ -101,59 +173,60 @@
     </span>
                         </code>
                     </pre>
-                </article>
-                <article id="degree_radian">
-                    <h2>Degree / Radian</h2>
-                    <p>“弧度”和“度”是度量角大小的两种不同的单位。就像“米”和“市尺”是度量长度大小的两种不同的单位一样。</p>
-                    <h3 id="degree">一、度的定义 </h3>
-                    <pre>
+                    </article>
+                    <article id="degree_radian">
+                        <h2>Degree / Radian</h2>
+                        <p>“弧度”和“度”是度量角大小的两种不同的单位。就像“米”和“市尺”是度量长度大小的两种不同的单位一样。</p>
+                        <h3 id="degree">一、度的定义 </h3>
+                        <pre>
                         <code>
     两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。
     当这段弧长正好等于圆周长的360分之一时，两条射线的夹角的大小为1度。
                         </code>
                     </pre>
-                    <h3>二、弧度的定义</h3>
-                    <pre>
+                        <h3>二、弧度的定义</h3>
+                        <pre>
                         <code>
     两条射线从圆心向圆周射出，形成一个夹角和夹角正对的一段弧。
     当这段弧长正好等于圆的半径时，两条射线的夹角大小为1弧度。
                         </code>
                     </pre>
-                    <div class="pageImage"><img src="img/degree_radian.png" /></div>
-                    <h3 id="radian">三、度跟弧度之间的换算 </h3>
-                    <pre>
+                        <div class="pageImage"><img src="img/degree_radian.png" /></div>
+                        <h3 id="radian">三、度跟弧度之间的换算 </h3>
+                        <pre>
                         <code>
     1弧度＝180°/π （≈57.3°）
     1度＝π/180 弧度
                         </code>
                     </pre>
-                </article>
-            </section>
-
-            <section id="reference">
-                <h2>External links</h2>
-                <ul class="reference">
-                    <li><a href="https://en.wikipedia.org/wiki/Geographic_information_system" target="_blank">Geographic information system</a></li>
-                    <li><a href="http://www.opengeospatial.org/" target="_blank">OGC  (Open Geospatial Consortium)</a></li>
-                    <li><a href="resources/OGC_Handbook.pdf" target="_blank">OGC Handbook</a></li>
-                    <li><a href="http://support.supermap.com.cn/DataWarehouse/WebDocHelp/OnlineHelp/Flash3D/G_ProjectDocumentation/C_ResolutionAndScale.html" target="_blank">Resolution And Scale</a></li>
-                    <li><a href="http://spatialreference.org/ref/epsg/" target="_blank">Spatial reference list</a></li>
-                    <li><a href="http://icodeit.org/2014/04/intro-map-gis/" target="_blank">How does GIS system works?</a></li>
-                    <li><a href="http://icodeit.org/2014/04/setup-map-server-by-mapnik/" target="_blank">Setup map server by mapnik</a></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Esri" target="_blank">Esri</a></li>
-                    <li><a href="http://www.openstreetmap.org" target="_blank">Open Street Map</a></li>
-                </ul>
-            </section>
-            <footer class="contentinfo">
-                development is supported by <a href="http://www.xujiasheng.com">Nate Xu</a> &bull;
-                hosted on <a href="https://github.com/nate-luup/javascript">GitHub</a>
-            </footer>
-
-        </div><!-- /#content -->
-    </div><!-- /#main -->
-
-</div><!-- /.container -->
-<a href="#main"><span id="back-to-top"></span></a>
-<script src="js/init.js"></script>
+                    </article>
+                </section>
+                <section id="reference">
+                    <h2>External links</h2>
+                    <ul class="reference">
+                        <li><a href="https://en.wikipedia.org/wiki/Geographic_information_system" target="_blank">Geographic information system</a></li>
+                        <li><a href="http://www.opengeospatial.org/" target="_blank">OGC  (Open Geospatial Consortium)</a></li>
+                        <li><a href="resources/OGC_Handbook.pdf" target="_blank">OGC Handbook</a></li>
+                        <li><a href="http://support.supermap.com.cn/DataWarehouse/WebDocHelp/OnlineHelp/Flash3D/G_ProjectDocumentation/C_ResolutionAndScale.html" target="_blank">Resolution And Scale</a></li>
+                        <li><a href="http://spatialreference.org/ref/epsg/" target="_blank">Spatial reference list</a></li>
+                        <li><a href="http://icodeit.org/2014/04/intro-map-gis/" target="_blank">How does GIS system works?</a></li>
+                        <li><a href="http://icodeit.org/2014/04/setup-map-server-by-mapnik/" target="_blank">Setup map server by mapnik</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Esri" target="_blank">Esri</a></li>
+                        <li><a href="http://www.openstreetmap.org" target="_blank">Open Street Map</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Shapefile" target="_blank">Shapefile</a></li>
+                    </ul>
+                </section>
+                <footer class="contentinfo">
+                    development is supported by <a href="http://www.xujiasheng.com">Nate Xu</a> &bull; hosted on <a href="https://github.com/nate-luup/javascript">GitHub</a>
+                </footer>
+            </div>
+            <!-- /#content -->
+        </div>
+        <!-- /#main -->
+    </div>
+    <!-- /.container -->
+    <a href="#main"><span id="back-to-top"></span></a>
+    <script src="js/init.js"></script>
 </body>
+
 </html>
